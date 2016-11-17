@@ -16,7 +16,15 @@ service: blog
 provider:
   name: aws
   runtime: nodejs4.3
-
+  iamRoleStatements: # permissions for all of your functions can be set here
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:310281080482:table/blog-posts"
 
 functions:
   addBlogPost:
@@ -35,6 +43,12 @@ functions:
           method: get
           cors: true
 
+resources:
+  Resources:
+    ApiGatewayMethodBlogDashpostPost:
+      Properties:
+        AuthorizationType: AWS_IAM
+             
 plugins:
   - serverless-offline
 

@@ -24,19 +24,21 @@ function runHandler(handler, event, callback){
       headers: {
         "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
       },
-      body: JSON.stringify({ success: true, message: result }),
+      body: JSON.stringify({ success: true, data: result }),
     };
 
     callback(null, response);
 
   }, function (err) {
 
+    console.log('ERROR', err);
+
     const response = {
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
       },
-      body: JSON.stringify({ success: false, message: err.message }),
+      body: JSON.stringify({ success: false, data: { error: err.message } }),
     };
 
     callback(null, response);
