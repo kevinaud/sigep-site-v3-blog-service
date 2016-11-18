@@ -2,17 +2,28 @@
 
 var addBlogPost     = require('./lib/addBlogPost');
 var getAllBlogPosts = require('./lib/getAllBlogPosts');
+var getBlogPost     = require('./lib/getBlogPost');
+var updateBlogPost  = require('./lib/updateBlogPost');
+var deleteBlogPost  = require('./lib/deleteBlogPost');
 
 module.exports.addBlogPost = (event, context, callback) => {
-
   runHandler(addBlogPost, event, callback);
-
 };
 
 module.exports.getAllBlogPosts = (event, context, callback) => {
+  runHandler(getAllBlogPosts, event, callback);
+};
 
- runHandler(getAllBlogPosts, event, callback);
+module.exports.getBlogPost = (event, context, callback) => {
+  runHandler(getBlogPost, event, callback);
+};
 
+module.exports.updateBlogPost = (event, context, callback) => {
+  runHandler(updateBlogPost, event, callback);
+};
+
+module.exports.deleteBlogPost = (event, context, callback) => {
+  runHandler(deleteBlogPost, event, callback);
 };
 
 function runHandler(handler, event, callback){

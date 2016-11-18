@@ -43,11 +43,54 @@ functions:
           method: get
           cors: true
 
+  getBlogPost:
+    handler: handler.getBlogPost
+    events:
+      - http:
+          path: blog-post/{id}
+          method: get
+          cors: true
+
+  updateBlogPost:
+    handler: handler.updateBlogPost
+    events:
+      - http:
+          path: blog-post/{id}
+          method: post
+          cors: true
+          
+  deleteBlogPost:
+    handler: handler.deleteBlogPost
+    events:
+      - http:
+          path: blog-post/{id}
+          method: delete
+          cors: true
+
 resources:
   Resources:
+
     ApiGatewayMethodBlogDashpostPost:
       Properties:
         AuthorizationType: AWS_IAM
+
+    ApiGatewayMethodBlogDashpostIdVarDelete:
+      Properties:
+        AuthorizationType: AWS_IAM
+
+    ApiGatewayMethodBlogDashpostIdVarPost:
+      Properties:
+        AuthorizationType: AWS_IAM
+    
+    #ApiGatewayMethodBlogDashpostPost:
+    #  Properties:
+    #    AuthorizationType: AWS_IAM
+    #
+    #ApiGatewayMethodBlogDashpostPost:
+    #  Properties:
+    #    AuthorizationType: AWS_IAM
+
+
              
 plugins:
   - serverless-offline
